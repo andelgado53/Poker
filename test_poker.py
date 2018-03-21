@@ -50,6 +50,17 @@ class TestPoker(TestCase):
         self.assertTrue(Poker.flush("6C 7C 8C 9C TC".split()))
         self.assertTrue(Poker.flush("AH 7H 3H TH 2H".split()))
         self.assertFalse(Poker.flush("2H 2D AC 8H 9H".split()))
+    
+    def test_kind(self):
+        self.assertEqual(Poker.kind(4, (10, 10, 10, 10, 6)), 10)
+        self.assertIsNone(Poker.kind(4, (10, 10, 10, 6, 2)))
+        self.assertEqual(Poker.kind(3, (10, 10, 10, 6, 2)), 10)
+        self.assertEqual(Poker.kind(2, (10, 10, 9, 6, 2)), 10)
+        self.assertEqual(Poker.kind(1, (10, 9, 8, 6, 2)), 10)
+        self.assertIsNone(Poker.kind(0, (10, 9, 8, 6, 2)))
+        self.assertIsNone(Poker.kind(-5, (10, 9, 8, 6, 2)))
+
+
 
 
 

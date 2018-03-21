@@ -36,11 +36,15 @@ def flush(hand):
 
 def kind(num_of_cards, ranks):
     ns = ["-", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    if num_of_cards <= 0:
+        return None
     for r in ranks:
         ns[r] = ns[r] + 1
-    for r,c in enumerate(ns):
-        if c == num_of_cards:
-            return r
+    index = len(ns) - 1
+    while index >= 0:
+        if ns[index] == num_of_cards:
+            return index
+        index -= 1
     return None
 
 def two_pair(ranks):
